@@ -17,12 +17,13 @@
                 />
                 <animate
                     attributeName="stroke-width"
-                    values="0;2;1"
+                    values="0;2;1;0"
                     begin="appearence.begin"
                     end="appearence.end"
                     dur="1"
                     repeatCount="indefinite"
                     keySplines=".25 .1 .25 1;
+                                .25 .1 .25 1;
                                 .25 .1 .25 1"
                     calcMode="spline"
                 />
