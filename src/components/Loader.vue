@@ -1,7 +1,6 @@
 <template>
     <div 
         class="container"
-        @click="move"
     >
         <div
             class="signs"
@@ -52,12 +51,11 @@ export default {
     },
     data() {
         return {
-            duration: 10,
+            duration: 1,
 
             signs: [                
                 {
                     timeFunc: '.11 0 .5 0;',
-                    begin: '0',
                     transform: {
                         x: '0',
                         y: '0',  
@@ -65,7 +63,6 @@ export default {
                 },
                 {
                     timeFunc: '.45 0 .55 0;',
-                    begin: '0',
                     transform: {
                         x: '+35',
                         y: '-15',
@@ -73,7 +70,6 @@ export default {
                 },
                 {
                     timeFunc: '.25 .1 .25 1;',
-                    begin: '0',
                     transform: {
                         x: '20',
                         y: '15',
@@ -81,7 +77,6 @@ export default {
                 },
                 {
                     timeFunc: '.7 0 .84 0;',
-                    begin: '0',
                     transform: {
                         x: '-10',
                         y: '-35',
@@ -89,7 +84,6 @@ export default {
                 },
                 {
                     timeFunc: '.85 0 .15 0;',
-                    begin: '0',
                     transform: {
                         x: '-20',
                         y: '30', 
@@ -97,7 +91,6 @@ export default {
                 },
                 {
                     timeFunc: '.16 1 .3 1;',
-                    begin: '0',
                     transform: {
                         x: '-35',
                         y: '-15',
