@@ -17,7 +17,12 @@
                         'scale(' + findScale(elem.transform.x, elem.transform.y) + ')' 
                 }"
             >
-                <path d="M 20.5 10 L 14.216 4.414 C 11.384 1.897 7.116 1.897 4.284 4.414 C 0.94 7.387 0.94 12.613 4.284 15.586 C 7.116 18.103 11.384 18.103 14.216 15.586 L 20.5 10 Z M 20.5 10 L 26.785 15.586 C 29.616 18.103 33.884 18.103 36.715 15.586 C 40.06 12.613 40.06 7.387 36.715 4.414 C 33.884 1.897 29.616 1.897 26.784 4.414 C 24.842 6.141 22.978 7.797 20.5 10 Z" stroke="black" stroke-width="2" stroke-dasharray="0 52 0">
+                <path 
+                    d="M 20.5 10 L 14.216 4.414 C 11.384 1.897 7.116 1.897 4.284 4.414 C 0.94 7.387 0.94 12.613 4.284 15.586 C 7.116 18.103 11.384 18.103 14.216 15.586 L 20.5 10 Z M 20.5 10 L 26.785 15.586 C 29.616 18.103 33.884 18.103 36.715 15.586 C 40.06 12.613 40.06 7.387 36.715 4.414 C 33.884 1.897 29.616 1.897 26.784 4.414 C 24.842 6.141 22.978 7.797 20.5 10 Z" 
+                    stroke="#17181c" 
+                    stroke-width="2" 
+                    stroke-dasharray="0 52 0"
+                >
                     <animate
                         :id="i" 
                         attributeName="stroke-dashoffset" 
@@ -44,7 +49,13 @@
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path d="M1 2L17 18L24 2L40 18" stroke="black" stroke-width="2" stroke-dashoffset="32" stroke-dasharray="0 32">
+                <path 
+                    d="M1 2L17 18L24 2L40 18" 
+                    stroke="#17181c" 
+                    stroke-width="2" 
+                    stroke-dashoffset="32" 
+                    stroke-dasharray="0 32" 
+                >
                     <animate
                         id="s" 
                         attributeName="stroke-dasharray" 
@@ -190,9 +201,8 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden;
-    background-color: #17181c;    
-    z-index: -9999;
+    overflow: hidden;  
+    z-index: -9998;
 }
 
 .signs {
