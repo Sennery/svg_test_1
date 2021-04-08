@@ -191,7 +191,7 @@ export default {
     top: 0;
     left: 0;
     overflow: hidden;
-    background:url('https://farm9.staticflickr.com/8760/17195790401_ceeeafcddb_o.jpg');background-size:cover;    
+    background-color: #17181c;    
     z-index: -9999;
 }
 
