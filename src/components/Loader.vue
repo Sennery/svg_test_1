@@ -73,8 +73,7 @@
                                 begin="s.end"
                                 :dur="duration" 
                                 repeatCount="1"
-                                keySplines="
-                                            0.65, 0, 0.35, 1;"
+                                keySplines=".25 .1 .25 1;"
                                 calcMode="spline"
                                 fill="freeze"
                             />
@@ -100,8 +99,7 @@
                                 begin="s.end"
                                 :dur="duration" 
                                 repeatCount="1"
-                                keySplines="
-                                            0.65, 0, 0.35, 1;"
+                                keySplines=".25 .1 .25 1;"
                                 calcMode="spline"
                                 fill="freeze"
                             />
