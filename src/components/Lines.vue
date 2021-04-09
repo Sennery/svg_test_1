@@ -31,7 +31,24 @@
             </defs>
             
             <g mask="url(#mask_word)">
-                <text x="50%" y="50%" dominant-baseline="central" class="text" text-anchor="middle">SENNERY</text>
+                <text 
+                    x="50%" y="500%" 
+                    dominant-baseline="central" 
+                    class="text" 
+                    text-anchor="middle"
+                    v-for="(it, i) in words"
+                    :key="i"
+                >
+                    {{ it }}
+                    <animate
+                        attributeName="y" 
+                        values="50%;500%;500%;500%;"
+                        :begin="2.5 + 5 * i"
+                        dur="20"
+                        repeatCount="indefinite"
+                        calcMode="discrete"
+                    />
+                </text>
             </g>            
         </svg>
         <svg 
@@ -93,7 +110,16 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            words: [
+                'SENNERY',
+                'MODERN',
+                'CLEAN',
+                'AESTHETIC'
+            ]
+        }
+    }
 }
 </script>
 
