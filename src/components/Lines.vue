@@ -55,14 +55,56 @@
                 mask="url(#mask_word)"                
             >
                 <rect x="0" y="0" height="50" width="100" fill="url(#RadialGradient1)" transform="translate(-10 -10)"/>
+                
                 <text 
                     x="50%" y="500%" 
                     dominant-baseline="central" 
                     class="text" 
                     text-anchor="middle"
+                    fill="#0ff"
                     v-for="(it, i) in words"
                     :key="i"
-                    :style="{ transform: 'translate(' + mouseTransform.x + 'px, ' + mouseTransform.y + 'px) skew(' + mouseTransform.skewX + 'rad, ' + mouseTransform.skewY + 'rad)'}"                    
+                    :style="{ transform: 'translate(' + mouseTransform.x * 0.5 + 'px, ' + mouseTransform.y * 0.5 + 'px)'}"                    
+                >
+                    {{ it }}
+                    <animate
+                        attributeName="y" 
+                        values="50%;500%;500%;500%;"
+                        :begin="2.5 + 5 * i"
+                        dur="20"
+                        repeatCount="indefinite"
+                        calcMode="discrete"
+                    />
+                </text>
+                <text 
+                    x="50%" y="500%" 
+                    dominant-baseline="central" 
+                    class="text" 
+                    text-anchor="middle"
+                    fill="#f0f"
+                    v-for="(it, i) in words"
+                    :key="i"
+                    :style="{ transform: 'translate(' + mouseTransform.x * 0.4 + 'px, ' + mouseTransform.y * 0.4 + 'px)'}"                    
+                >
+                    {{ it }}
+                    <animate
+                        attributeName="y" 
+                        values="50%;500%;500%;500%;"
+                        :begin="2.5 + 5 * i"
+                        dur="20"
+                        repeatCount="indefinite"
+                        calcMode="discrete"
+                    />
+                </text>
+                <text 
+                    x="50%" y="500%" 
+                    dominant-baseline="central" 
+                    class="text"
+                    fill="white" 
+                    text-anchor="middle"
+                    v-for="(it, i) in words"
+                    :key="i"
+                    :style="{ transform: 'translate(' + mouseTransform.x * 0.25 + 'px, ' + mouseTransform.y * 0.25 + 'px)'}"                    
                 >
                     {{ it }}
                     <animate
@@ -227,6 +269,6 @@ export default {
 .text {
     font-size: 10px;
     font-weight: bold;
-    fill: white;    
-}
+    /* fill: white;   */ 
+} 
 </style>
