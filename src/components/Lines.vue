@@ -33,6 +33,8 @@
                         stroke-linejoin="round"
                         stroke-dashoffset="230" 
                         stroke-dasharray="230"
+                        class="lines"
+                        :style="{ transform: 'translate(' + -mouseTransform.x * 1 + 'px, ' + -mouseTransform.y * 1 + 'px)  scale(0.95, 0.95)'}"
                     >
                         <animate
                             attributeName="stroke-dashoffset" 
@@ -260,6 +262,10 @@ export default {
     width: 80vw;
 }
 
+.lines {
+    transform-origin: center;
+}
+
 .infinity {
     position: absolute;
     z-index: -99;
@@ -267,7 +273,7 @@ export default {
 }
 
 .text {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
     /* fill: white;   */ 
 } 
