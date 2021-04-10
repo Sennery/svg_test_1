@@ -1,19 +1,38 @@
 <template>
-    <div id="app">
+    <div id="app" @mousemove="mouseMove">
         <Loader/>
-        <Lines/>
+        <Lines 
+            :mouse="mouse"
+        />
+        <Works/>
     </div>
 </template>
 
 <script>
 import Loader from './components/Loader.vue'
 import Lines from './components/Lines.vue'
+import Works from './components/Works.vue'
 
 export default {
     name: 'App',
     components: {
         Loader,
-        Lines
+        Lines,
+        Works
+    },
+    data() {
+        return {
+            mouse: {
+                x: 0,
+                y: 0
+            }
+        }
+    },
+    methods: {
+        mouseMove(e) {
+            this.mouse.x = e.pageX;
+            this.mouse.y = e.pageY;
+        }
     }
 }
 </script>
@@ -21,7 +40,9 @@ export default {
 <style>
 html {
     font-family: "Anodina", sans-serif;
-    font-size: 1vw;
+    font-size: 1vw;    
+    margin: 0;
+    padding: 0;
 }
 @font-face {
     font-family: "Anodina";

@@ -51,7 +51,9 @@
                 </mask>
             </defs>
             
-            <g mask="url(#mask_word)">
+            <g 
+                mask="url(#mask_word)"                
+            >
                 <rect x="0" y="0" height="50" width="100" fill="url(#RadialGradient1)" transform="translate(-10 -10)"/>
                 <text 
                     x="50%" y="500%" 
@@ -60,6 +62,7 @@
                     text-anchor="middle"
                     v-for="(it, i) in words"
                     :key="i"
+                    :style="{ transform: 'translate(' + mouseTransform.x + 'px, ' + mouseTransform.y + 'px) skew(' + mouseTransform.skewX + 'rad, ' + mouseTransform.skewY + 'rad)'}"                    
                 >
                     {{ it }}
                     <animate
@@ -132,6 +135,11 @@
 
 <script>
 export default {
+    props: {
+        mouse: {
+            type: Object
+        }
+    },
     data() {
         return {
             words: [
@@ -139,8 +147,54 @@ export default {
                 'MODERN',
                 'CLEAN',
                 'AESTHETIC'
-            ]
+            ],
+
+            mouseTransform: {
+                x: 0,
+                y: 0,
+                skewX: 0,
+                skewY: 0
+            },
+            speed: 1
         }
+    },
+    computed: {
+        center() {
+            const x = document.documentElement.clientWidth / 2;
+            const y = document.documentElement.clientHeight / 2;
+
+            return { x, y }
+        },
+        maxDistance() {
+            const x = document.documentElement.clientWidth;
+            const y = document.documentElement.clientHeight;
+
+            return Math.sqrt(x*x + y*y) / 2;
+        }
+    },
+    methods: {
+        moveObj() {
+            const mouse = this.mouse;
+            const vMouse = {
+                vx: this.center.x - mouse.x,
+                vy: this.center.y - mouse.y,                
+            }
+            const distance = Math.sqrt(vMouse.vx * vMouse.vx + vMouse.vy * vMouse.vy);
+            const vMouseNormalized = {
+                vx: vMouse.vx / distance,
+                vy: vMouse.vy / distance,
+            };
+            const speed = this.speed * distance / this.maxDistance;
+            //const angle = Math.atan2(mouse.y - this.center.y, mouse.x - this.center.x);
+
+            this.mouseTransform.x = vMouseNormalized.vx * speed;
+            this.mouseTransform.y = vMouseNormalized.vy * speed;
+            //this.mouseTransform.skewX = angle;
+            //this.mouseTransform.skewY = angle;
+        }
+    },
+    mounted() {
+        setInterval(this.moveObj, 15);
     }
 }
 </script>
@@ -153,8 +207,6 @@ export default {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    margin: 0;
-    padding: 0;
     position: absolute;
     top: 0;
     left: 0;
