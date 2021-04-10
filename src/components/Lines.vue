@@ -34,7 +34,7 @@
                         stroke-dashoffset="230" 
                         stroke-dasharray="230"
                         class="lines"
-                        :style="{ transform: 'translate(' + -mouseTransform.x * 1 + 'px, ' + -mouseTransform.y * 1 + 'px)  scale(0.95, 0.95)'}"
+                        :style="{ transform: 'translate(' + -mouseTransform.x * 0.75 + 'px, ' + -mouseTransform.y * 0.75 + 'px)  scale(0.95, 0.95)'}"
                     >
                         <animate
                             attributeName="stroke-dashoffset" 
@@ -120,60 +120,6 @@
                 </text>
             </g>            
         </svg>
-        <!-- <svg 
-            class="infinity" 
-            viewBox="0 0 41 20" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <defs>
-                <radialGradient id="RadialGradient1" spreadMethod="reflect" fx="0.25" fy="0.25">
-                    <stop offset="0%" stop-color="#aa39b8"/>
-                    <stop offset="100%" stop-color="#383de1"/>      
-                    <animate
-                        attributeName="fy"
-                        values="0.25;0.75;0.25"
-                        repeatCount="indefinite"
-                        dur="4"
-                        begin="0"
-                    />
-                    <animate
-                        attributeName="fx"
-                        values="0.25;0.75;0.25"
-                        repeatCount="indefinite"
-                        dur="12"
-                        begin="0"
-                    />                 
-                </radialGradient>
-            </defs>
-            <path 
-                d="M 20.5 10 L 14.216 4.414 C 11.384 1.897 7.116 1.897 4.284 4.414 C 0.94 7.387 0.94 12.613 4.284 15.586 C 7.116 18.103 11.384 18.103 14.216 15.586 L 20.5 10 Z M 20.5 10 L 26.785 15.586 C 29.616 18.103 33.884 18.103 36.715 15.586 C 40.06 12.613 40.06 7.387 36.715 4.414 C 33.884 1.897 29.616 1.897 26.784 4.414 C 24.842 6.141 22.978 7.797 20.5 10 Z" 
-                stroke="url(#RadialGradient1)"
-                stroke-linecap="round"  
-                stroke-width="3" 
-                stroke-dasharray="52"
-            >
-                <animate 
-                    attributeName="stroke-dashoffset" 
-                    values="0;104;"
-                    begin="0"
-                    dur="5"
-                    repeatCount="indefinite"
-                    keySplines=".25 .1 .25 1"
-                    calcMode="spline"
-                />
-                <animate
-                    attributeName="stroke-width"
-                    values="30;1;30"
-                    begin="0"
-                    dur="5"
-                    repeatCount="indefinite"
-                    keySplines=".25 .1 .25 1;
-                                .12 0 .39 0;"
-                    calcMode="spline"
-                />
-            </path>
-        </svg> -->
     </div>
 </template>
 
@@ -196,8 +142,6 @@ export default {
             mouseTransform: {
                 x: 0,
                 y: 0,
-                skewX: 0,
-                skewY: 0
             },
             speed: 1
         }
