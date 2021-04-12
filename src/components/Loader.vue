@@ -51,7 +51,7 @@
             >
                 <path 
                     d="M1 2L17 18L24 2L40 18" 
-                    stroke="#17181c" 
+                    stroke="url(#Gradient1)" 
                     stroke-width="2" 
                     stroke-dashoffset="32" 
                     stroke-dasharray="0 32" 
