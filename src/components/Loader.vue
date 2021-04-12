@@ -11,7 +11,7 @@
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
                 v-for="(elem, i) in signs"
-                :key="i"
+                :key="'inf' + i"
                 :style="{ 
                     transform: 'translate(' + elem.transform.x + 'vw ,' + elem.transform.y + 'vh)' +
                         'scale(' + findScale(elem.transform.x, elem.transform.y) + ')' 
@@ -24,7 +24,7 @@
                     stroke-dasharray="0 52 0"
                 >
                     <animate
-                        :id="i" 
+                        :id="'inf' + i" 
                         attributeName="stroke-dashoffset" 
                         values="0;104;"
                         :dur="duration"
@@ -34,8 +34,8 @@
                     <animate
                         attributeName="stroke-width"
                         values="0;2;0"
-                        :begin="i + '.begin'"
-                        :end="i + '.end'"
+                        :begin="'inf' + i + '.begin'"
+                        :end="'inf' + i + '.end'"
                         :dur="duration"
                         keySplines=".25 .1 .25 1;
                                     .12 0 .39 0;"
@@ -60,7 +60,7 @@
                         id="s" 
                         attributeName="stroke-dasharray" 
                         values="0 32;64 0;"
-                        begin="0.end"
+                        begin="inf0.end"
                         :dur="duration" 
                         repeatCount="1"
                         keySplines=".25 .1 .25 1;"
