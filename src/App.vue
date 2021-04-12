@@ -43,6 +43,8 @@ html {
     font-size: 1vw;    
     margin: 0;
     padding: 0;
+    background-color: #17181c;
+
 }
 @font-face {
     font-family: "Anodina";
