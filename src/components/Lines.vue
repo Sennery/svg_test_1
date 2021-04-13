@@ -20,28 +20,13 @@
                         />
                     </stop>
                 </linearGradient >
-            </defs>
-
-            <filter id="filter" >
-                <feTurbulence type="fractalNoise" baseFrequency="0.05 0.001" numOctaves="2" result="warp">
-                    <animate
-                        attributeName="baseFrequency"
-                        values="0.05,0;0.05,0.005;"
-                        repeatCount="indefinite"                        
-                        dur="5"
-                        begin="1"
-                        calcMode="spline"
-                        keySplines="0.61, 1, 0.88, 1;"
-                    />
-                </feTurbulence>
-                <feDisplacementMap xChannelSelector="R" yChannelSelector="A" scale="100" in="SourceGraphic" in2="warp"/>
-            </filter>
+            </defs>            
 
             <filter id="blur" x="-10%" y="-10%" width="120%" height="120%">
                 <feGaussianBlur in="sourceGraphic" stdDeviation="0,0">
                     <animate
                         attributeName="stdDeviation"
-                        values="0,0;0,0;2,0.1;0,0;"
+                        values="0,0;0,0;0.1,1;0,0;"
                         repeatCount="indefinite"                        
                         dur="5"
                         begin="1"
@@ -82,64 +67,34 @@
             
             <g filter="url(#blur)">               
                 <text 
-                    x="50%" y="500%" 
+                    x="50%" y="50%" 
                     dominant-baseline="central" 
                     class="text" 
                     text-anchor="middle"
                     fill="#0ff"
-                    v-for="(it, i) in words"
-                    :key="i + 'blue'"
                     :style="{ transform: 'translate(' + mouseTransform.x * 0.5 + 'px, ' + mouseTransform.y * 0.5 + 'px)'}"                    
                 >
-                    {{ it }}
-                    <animate
-                        attributeName="y" 
-                        values="50%;500%;500%;500%;"
-                        :begin="5 * i"
-                        dur="20"
-                        repeatCount="indefinite"
-                        calcMode="discrete"
-                    />
+                    {{ words[currentWord] }}
                 </text>
                 <text 
-                    x="50%" y="500%" 
+                    x="50%" y="50%" 
                     dominant-baseline="central" 
                     class="text" 
                     text-anchor="middle"
                     fill="#f0f"
-                    v-for="(it, i) in words"
-                    :key="i + 'red'"
                     :style="{ transform: 'translate(' + mouseTransform.x * 0.1 + 'px, ' + mouseTransform.y * 0.1 + 'px)'}"                    
                 >
-                    {{ it }}
-                    <animate
-                        attributeName="y" 
-                        values="50%;500%;500%;500%;"
-                        :begin="5 * i"
-                        dur="20"
-                        repeatCount="indefinite"
-                        calcMode="discrete"
-                    />
+                    {{ words[currentWord] }}
                 </text>
                 <text 
-                    x="50%" y="500%" 
+                    x="50%" y="50%" 
                     dominant-baseline="central" 
                     class="text"
-                    fill="white" 
+                    fill="#e6e6e6" 
                     text-anchor="middle"
-                    v-for="(it, i) in words"
-                    :key="i + 'white'"
                     :style="{ transform: 'translate(' + mouseTransform.x * 0.3 + 'px, ' + mouseTransform.y * 0.3 + 'px)'}"                    
                 >
-                    {{ it }}
-                    <animate
-                        attributeName="y" 
-                        values="50%;500%;500%;500%;"
-                        :begin="5 * i"
-                        dur="20"
-                        repeatCount="indefinite"
-                        calcMode="discrete"
-                    />
+                    {{ words[currentWord] }}
                 </text>
             </g>            
         </svg>
@@ -155,6 +110,7 @@ export default {
     },
     data() {
         return {
+            currentWord: 0,
             words: [
                 'SENNERY',
                 'MODERN',
@@ -224,11 +180,11 @@ export default {
     top: 0;
     left: 0;
     z-index: -9999;    
-    /* filter: url(#filter); */
 }
 
 .word {
     width: 80vw;
+    transition: transform 1s ease-out;
 }
 
 .lines {
