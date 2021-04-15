@@ -10,7 +10,7 @@ Vue.directive('scroll', {
             destination: 0,
             elastick: 0,
             step: binding.value.step ?? 20,
-            max: document.body.scrollHeight - document.documentElement.clientHeight,
+            max: 0,
             speed: binding.value.speed ?? 50
         };
         const progressFunction = binding.value.progressFunc ?? ((part) => 1 - Math.pow(1 - part, 2));
@@ -42,21 +42,24 @@ Vue.directive('scroll', {
 
         if (startEvent) {
             window.addEventListener(startEvent, () => {
+                scroll.max = document.body.scrollHeight - document.documentElement.clientHeight;
                 requestAnimationFrame(animate);
             });
-        } else {        
+        } else {    
+            scroll.max = document.body.scrollHeight - document.documentElement.clientHeight;    
             requestAnimationFrame(animate);
         }
 
         document.body.addEventListener('wheel', (e) => {
-            if (scroll.destination + e.deltaY < 0) {
+            const step = Math.sign(e.deltaY) * scroll.step * 5;
+            if (scroll.destination + step < 0) {
                 scroll.destination = 0;
-                scroll.elastick = e.deltaY * 2;
-            } else if (scroll.destination + e.deltaY > scroll.max) {
+                scroll.elastick = step;
+            } else if (scroll.destination + step > scroll.max) {
                 scroll.destination = scroll.max;
-                scroll.elastick = e.deltaY * 2;
+                scroll.elastick = step;
             } else {                
-                scroll.destination += e.deltaY;
+                scroll.destination += step;
             }
         });
     }
