@@ -11,25 +11,14 @@ Vue.directive('scroll', {
             elastick: 0,
             step: binding.value.step ?? 20,
             max: document.body.scrollHeight - document.documentElement.clientHeight,
-            speed: binding.value.speed ?? 30
+            speed: binding.value.speed ?? 50
         };
         const progressFunction = binding.value.progressFunc ?? ((part) => 1 - Math.pow(1 - part, 2));
         const currentGetter = binding.value.getter ?? (() => {});
-        let distanceToScroll, partOfMax, scrollThisTic;
-        
-        document.body.addEventListener('wheel', (e) => {
-            if (scroll.destination + e.deltaY < 0) {
-                scroll.destination = 0;
-                scroll.elastick = e.deltaY * 2;
-            } else if (scroll.destination + e.deltaY > scroll.max) {
-                scroll.destination = scroll.max;
-                scroll.elastick = e.deltaY * 2;
-            } else {                
-                scroll.destination += e.deltaY;
-            }
-        });
-        
-        requestAnimationFrame(function animate() {
+        const startEvent = binding.value.event ?? null;
+        let distanceToScroll, partOfMax, scrollThisTic;       
+
+        function animate() {
             distanceToScroll = scroll.destination  + scroll.elastick - scroll.current;
             if (distanceToScroll != 0) {
                 partOfMax = distanceToScroll/scroll.max;
@@ -49,9 +38,29 @@ Vue.directive('scroll', {
             currentGetter(scroll);
             
             requestAnimationFrame(animate);
+        }
+
+        if (startEvent) {
+            window.addEventListener(startEvent, () => {
+                requestAnimationFrame(animate);
+            });
+        } else {        
+            requestAnimationFrame(animate);
+        }
+
+        document.body.addEventListener('wheel', (e) => {
+            if (scroll.destination + e.deltaY < 0) {
+                scroll.destination = 0;
+                scroll.elastick = e.deltaY * 2;
+            } else if (scroll.destination + e.deltaY > scroll.max) {
+                scroll.destination = scroll.max;
+                scroll.elastick = e.deltaY * 2;
+            } else {                
+                scroll.destination += e.deltaY;
+            }
         });
     }
-  })
+})
 
 new Vue({
   render: h => h(App),
