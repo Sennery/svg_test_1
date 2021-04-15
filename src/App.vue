@@ -1,12 +1,10 @@
 <template>
-    <div id="app" @mousemove="mouseMove" @wheel="movePage">
+    <div id="app" @mousemove="mouseMove" v-scroll="{ progressFunc: progressFunction }">
         <!-- <Loader/> -->
         <Lines 
-            :style="{ transform: 'translateY(' + -scroll.current + 'px)'}"
             :mouse="mouse"
         />
         <Works
-            :style="{ transform: 'translateY(' + -scroll.current + 'px)'}"
         />
         <!-- <Transition/> -->
     </div>
@@ -32,15 +30,6 @@ export default {
                 x: 0,
                 y: 0
             },
-
-            scroll: {
-                current: 0,
-                destination: 0,
-                elastick: 0,
-                step: 20,
-                max: 0,
-                speed: 40
-            }
         }
     },
     methods: {
@@ -48,48 +37,12 @@ export default {
             this.mouse.x = e.pageX;
             this.mouse.y = e.pageY;
         },
-        movePage(e) {
-            if (this.scroll.destination + e.deltaY < 0) {
-                this.scroll.destination = 0;
-                this.scroll.elastick = e.deltaY * 2;
-            } else if (this.scroll.destination + e.deltaY > this.scroll.max) {
-                this.scroll.destination = this.scroll.max;
-                this.scroll.elastick = e.deltaY * 2;
-            } else {                
-                this.scroll.destination += e.deltaY;
-            }
-        },
-        animateScroll() {
-            const scroll = this.scroll;
-            const progressFunction = this.progressFunction;
-            let distanceToScroll, partOfMax, scrollThisTic;                      
-            
-            requestAnimationFrame(function animate() {
-                distanceToScroll = scroll.destination  + scroll.elastick - scroll.current;
-                if (distanceToScroll != 0) {
-                    partOfMax = distanceToScroll/scroll.max;
-                    scrollThisTic = progressFunction(partOfMax) * scroll.speed;
-                    scroll.current += (Math.abs(distanceToScroll) < 1) ? distanceToScroll : scrollThisTic;
-                }
-
-                if (scroll.elastick != 0) {
-                    if (scroll.current > scroll.destination && scroll.elastick > 0) {
-                        scroll.elastick -= scroll.step;
-                    } else if (scroll.current < scroll.destination) {
-                        scroll.elastick += scroll.step;
-                    }
-                }
-                
-                requestAnimationFrame(animate);
-            });
-        },
         progressFunction(part) {
             return 1 - Math.pow(1 - part, 2);
         }
     },
     mounted() {
-        this.scroll.max = document.body.scrollHeight - document.documentElement.clientHeight;
-        this.animateScroll();
+        
     }
 }
 </script>
