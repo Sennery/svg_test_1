@@ -5,6 +5,8 @@
             :mouse="mouse"
         />
         <Works
+            v-for="i in [1,2,3,4,5]"
+            :key="i"
         />
         <Transition
             :scroll="scroll"
