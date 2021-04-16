@@ -62,7 +62,7 @@
                         values="0 32;64 0;"
                         begin="inf0.end"
                         :dur="duration" 
-                        repeatCount="1"
+                        repeatCount="indefinite"
                         keySplines=".25 .1 .25 1;"
                         calcMode="spline"
                     />
@@ -80,39 +80,39 @@
                             d="M34.7,-64.7C38.5,-57.8,30.9,-35.6,33.4,-22.3C35.9,-9,48.5,-4.5,49.2,0.4C49.8,5.2,38.4,10.4,29.4,12.4C20.3,14.3,13.5,13,9,23.9C4.5,34.7,2.3,57.7,-0.6,58.8C-3.6,60,-7.1,39.2,-19,32.6C-30.9,26.1,-51.2,33.7,-54.7,30.6C-58.1,27.5,-44.8,13.8,-43.5,0.7C-42.2,-12.3,-53,-24.6,-49.5,-27.4C-45.9,-30.3,-27.9,-23.7,-17.2,-26.7C-6.6,-29.8,-3.3,-42.4,6,-52.9C15.4,-63.3,30.8,-71.6,34.7,-64.7Z" 
                             transform="translate(100 100) scale(0)"
                         >
-                            <animate 
+                            <animate
+                                id="backPath" 
                                 attributeName="d" 
                                 values="M34.7,-64.7C38.5,-57.8,30.9,-35.6,33.4,-22.3C35.9,-9,48.5,-4.5,49.2,0.4C49.8,5.2,38.4,10.4,29.4,12.4C20.3,14.3,13.5,13,9,23.9C4.5,34.7,2.3,57.7,-0.6,58.8C-3.6,60,-7.1,39.2,-19,32.6C-30.9,26.1,-51.2,33.7,-54.7,30.6C-58.1,27.5,-44.8,13.8,-43.5,0.7C-42.2,-12.3,-53,-24.6,-49.5,-27.4C-45.9,-30.3,-27.9,-23.7,-17.2,-26.7C-6.6,-29.8,-3.3,-42.4,6,-52.9C15.4,-63.3,30.8,-71.6,34.7,-64.7Z;
                                         M35.4,-62.1C44.6,-55.9,50.2,-44,57.5,-32.7C64.9,-21.4,74,-10.7,75.2,0.7C76.3,12,69.4,24,63.5,37.9C57.6,51.7,52.7,67.3,42.3,71.5C31.9,75.7,15.9,68.5,1.8,65.5C-12.4,62.5,-24.9,63.5,-33.4,58.2C-41.9,52.9,-46.4,41.2,-52.9,30.4C-59.5,19.6,-68,9.8,-71.4,-2C-74.8,-13.7,-73,-27.4,-67.7,-40.4C-62.4,-53.3,-53.7,-65.5,-41.8,-70.2C-29.9,-74.9,-15,-72.1,-1,-70.4C13,-68.8,26.1,-68.3,35.4,-62.1Z;"
-                                begin="s.end"
+                                begin="indefinite"
                                 :dur="duration" 
-                                repeatCount="1"
                                 keySplines=".25 .1 .25 1;"
                                 calcMode="spline"
                                 fill="freeze"
                             />
                             <animateTransform
+                                id="backTranslate"
                                 attributeName="transform" 
                                 type="translate" 
                                 from="100,100" 
                                 to="100,100" 
+                                begin="backPath.begin"
                                 additive="replace"
-                                begin="s.end"
                                 :dur="duration" 
-                                repeatCount="1"
                                 keySplines=".25 .1 .25 1;"
                                 calcMode="spline"
                                 fill="freeze"
                             />
                             <animateTransform
+                                id="backScale"
                                 attributeName="transform" 
                                 type="scale" 
                                 from="0" 
                                 to="1" 
+                                begin="backPath.begin"
                                 additive="sum"
-                                begin="s.end"
                                 :dur="duration" 
-                                repeatCount="1"
                                 keySplines=".25 .1 .25 1;"
                                 calcMode="spline"
                                 fill="freeze"
@@ -186,7 +186,16 @@ export default {
         findScale(x,y) {
             const scale = 1 - (Math.abs(x) + Math.abs(y))/100;
             return scale;
-        }
+        },
+    },
+    created() {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('s').setAttribute('repeatCount', '1');
+                document.getElementById('backPath').beginElement();
+            },this.duration * 2000)            
+            console.log('loaded!');
+        })
     }
 }
 </script>
@@ -199,7 +208,7 @@ export default {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     overflow: hidden;  
