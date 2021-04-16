@@ -45,7 +45,7 @@ export default {
     },
     computed: {
         scale() {
-            return Math.pow(this.scroll.partOfMax, 2) * 500;
+            return Math.pow(this.scroll.partOfMax, 2) * 300;
         }
     }
 }
