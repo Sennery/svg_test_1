@@ -26,7 +26,7 @@
                 <feGaussianBlur in="sourceGraphic" stdDeviation="0,0">
                     <animate
                         attributeName="stdDeviation"
-                        values="0,0;0,0;0.1,1;0,0;"
+                        values="0,0;0,0;1,0.1;0,0;"
                         repeatCount="indefinite"                        
                         dur="5"
                         begin="1"
@@ -176,9 +176,6 @@ export default {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: -9999;    
 }
 
