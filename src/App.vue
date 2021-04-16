@@ -1,28 +1,30 @@
 <template>
-    <div id="app" @mousemove="mouseMove" v-scroll="{ progressFunc: progressFunction }">
-        <!-- <Loader/> -->
+    <div id="app" @mousemove="mouseMove" v-scroll="{ progressFunc: progressFunction, getter: getScroll }">
+        <Loader/>
         <Lines 
             :mouse="mouse"
         />
         <Works
         />
-        <!-- <Transition/> -->
+        <Transition
+            :scroll="scroll"
+        />
     </div>
 </template>
 
 <script>
-//import Loader from './components/Loader.vue'
+import Loader from './components/Loader.vue'
 import Lines from './components/Lines.vue'
 import Works from './components/Works.vue'
-//import Transition from './components/Transition.vue'
+import Transition from './components/Transition.vue'
 
 export default {
     name: 'App',
     components: {
-        // Loader,
+        Loader,
         Lines,
         Works,
-        // Transition
+        Transition
     },
     data() {
         return {
@@ -30,6 +32,8 @@ export default {
                 x: 0,
                 y: 0
             },
+
+            scroll: {}
         }
     },
     methods: {
@@ -39,6 +43,9 @@ export default {
         },
         progressFunction(part) {
             return 1 - Math.pow(1 - part, 2);
+        },
+        getScroll(scroll) {
+            this.scroll = scroll;
         }
     },
     mounted() {
@@ -53,11 +60,16 @@ html {
     font-size: 1vw;
     background-color: #17181c !important;
     background-image: url('./assets/123.jpg');
-    overflow: hidden;    
+    overflow: hidden;   
 }
 
-#app {    
+body {
     filter: url(#transitionFilter);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;    
 }
 @font-face {
     font-family: "Anodina";

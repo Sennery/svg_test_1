@@ -4,10 +4,28 @@
             xmlns="http://www.w3.org/2000/svg"
             class="svg"
         >
-            <filter id="transitionFilter" x="0" y="0" width="100%" height="100%">
-                <feImage xlink:href="/1234.jpg" x="-50%" y="-50%" width="200%" height="200%" result='img1'/>
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.001" numOctaves="3" result="warp"/>
-                <feDisplacementMap xChannelSelector="B" yChannelSelector="B" scale="100" in="SourceGraphic" in2="img1"/>
+            <filter id="transitionFilter" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage 
+                    xlink:href="/2.jpg" 
+                    x="-50%" 
+                    y="-50%" 
+                    width="200%" 
+                    height="200%" 
+                    result='img1'
+                />                
+                <feTurbulence  
+                    type="fractalNoise"
+                    baseFrequency="0.02 0.002" 
+                    numOctaves="3" 
+                    result="warp"
+                />                
+                <feDisplacementMap 
+                    xChannelSelector="R" 
+                    yChannelSelector="R" 
+                    :scale="scale" 
+                    in="SourceGraphic" 
+                    in2="fil"
+                />
             </filter>
         </svg>
     </div>
@@ -15,13 +33,29 @@
 
 <script>
 export default {
+    props: {
+        scroll: {
+            type: Object
+        }
+    },
+    data() {
+        return {
 
+        }
+    },
+    computed: {
+        scale() {
+            return Math.abs(Math.pow(this.scroll.partOfMax, 2)) * 500;
+        }
+    }
 }
 </script>
 
 <style>
 .svg {
+    position: fixed;
     height: 100vh;
     width: 100vw;
+    z-index: -999999;
 }
 </style>
