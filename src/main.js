@@ -11,19 +11,21 @@ Vue.directive('scroll', {
             elastick: 0,
             step: binding.value.step ?? 20,
             max: 0,
-            speed: binding.value.speed ?? 50
+            speed: binding.value.speed ?? 50,
+            distanceToScroll: 0,
+            partOfMax: 0,
+            scrollThisTic: 0
         };
         const progressFunction = binding.value.progressFunc ?? ((part) => 1 - Math.pow(1 - part, 2));
         const currentGetter = binding.value.getter ?? (() => {});
-        const startEvent = binding.value.event ?? null;
-        let distanceToScroll, partOfMax, scrollThisTic;       
+        const startEvent = binding.value.event ?? null;      
 
         function animate() {
-            distanceToScroll = scroll.destination  + scroll.elastick - scroll.current;
-            if (distanceToScroll != 0) {
-                partOfMax = distanceToScroll/scroll.max;
-                scrollThisTic = progressFunction(partOfMax) * scroll.speed;
-                scroll.current += (Math.abs(distanceToScroll) < 1) ? distanceToScroll : scrollThisTic;
+            scroll.distanceToScroll = scroll.destination  + scroll.elastick - scroll.current;
+            if (scroll.distanceToScroll != 0) {
+                scroll.partOfMax = scroll.distanceToScroll/scroll.max;
+                scroll.scrollThisTic = progressFunction(scroll.partOfMax) * scroll.speed;
+                scroll.current += (Math.abs(scroll.distanceToScroll) < 1) ? scroll.distanceToScroll : scroll.scrollThisTic;
             }
 
             if (scroll.elastick != 0) {
@@ -42,11 +44,11 @@ Vue.directive('scroll', {
 
         if (startEvent) {
             window.addEventListener(startEvent, () => {
-                scroll.max = document.body.scrollHeight - document.documentElement.clientHeight;
+                scroll.max = el.scrollHeight - document.documentElement.clientHeight;
                 requestAnimationFrame(animate);
             });
         } else {    
-            scroll.max = document.body.scrollHeight - document.documentElement.clientHeight;    
+            scroll.max = el.scrollHeight - document.documentElement.clientHeight;    
             requestAnimationFrame(animate);
         }
 
