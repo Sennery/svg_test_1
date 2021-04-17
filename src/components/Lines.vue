@@ -46,7 +46,7 @@
                 stroke-width="5"
                 stroke-linecap="round" 
                 stroke-linejoin="round"
-                stroke-dashoffset="0" 
+                stroke-dashoffset="230" 
                 stroke-dasharray="230"
                 class="lines"
                 :style="{ transform: 'translate(' + -mouseTransform.x * 0.75 + 'px, ' + -mouseTransform.y * 0.75 + 'px)  scale(0.8)'}"

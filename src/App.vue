@@ -1,16 +1,18 @@
 <template>
     <div id="app" @mousemove="mouseMove" v-scroll="{ progressFunc: progressFunction, getter: getScroll }">
         <Loader/>
-        <Lines 
-            :mouse="mouse"
-        />
-        <Works
-            v-for="i in [1,2,3,4,5]"
-            :key="i"
-        />
-        <Transition
-            :scroll="scroll"
-        />
+        <div class="hide wrapper">            
+            <Lines 
+                :mouse="mouse"
+            />
+            <Works
+                v-for="i in [1,2,3,4,5]"
+                :key="i"
+            />
+            <Transition
+                :scroll="scroll"
+            />
+        </div>
     </div>
 </template>
 
@@ -50,8 +52,11 @@ export default {
             this.scroll = scroll;
         }
     },
-    mounted() {
-        
+    created() {
+        window.addEventListener('load', () => {
+            document.querySelector('.wrapper').classList.remove('hide');      
+            console.log('loaded!');
+        })
     }
 }
 </script>
@@ -77,8 +82,18 @@ body {
     top: 0;
     left: 0;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
 }
+
+.wrapper {
+    transition: transform 0.75s ease-out 0.75s; 
+    transform-origin: 50% 50vh;
+}
+
+.hide {
+    transform: scale(0) !important;
+}
+
 @font-face {
     font-family: "Anodina";
     src: url("assets/fonts/Anodina-Light.otf");

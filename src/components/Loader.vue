@@ -5,7 +5,7 @@
         <div
             class="signs"
         >
-            <svg 
+            <!-- <svg 
                 class="loader" 
                 viewBox="0 0 41 20" 
                 fill="none" 
@@ -42,7 +42,7 @@
                         calcMode="spline"
                     />
                 </path>
-            </svg>
+            </svg> -->
             <svg 
                 class="loader s" 
                 viewBox="0 0 41 20" 
@@ -60,7 +60,6 @@
                         id="s" 
                         attributeName="stroke-dasharray" 
                         values="0 32;64 0;"
-                        begin="inf0.end"
                         :dur="duration" 
                         repeatCount="indefinite"
                         keySplines=".25 .1 .25 1;"
@@ -193,7 +192,7 @@ export default {
             setTimeout(() => {
                 document.getElementById('s').setAttribute('repeatCount', '1');
                 document.getElementById('backPath').beginElement();
-            },this.duration * 2000)            
+            },this.duration * 1000)            
             console.log('loaded!');
         })
     }
@@ -212,7 +211,7 @@ export default {
     top: 0;
     left: 0;
     overflow: hidden;  
-    z-index: -9998;
+    z-index: 9998;
 }
 
 .signs {
