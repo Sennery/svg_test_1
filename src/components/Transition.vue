@@ -15,8 +15,8 @@
                 />                
                 <feTurbulence  
                     type="fractalNoise"
-                    baseFrequency="0.02 0.002" 
-                    numOctaves="3" 
+                    baseFrequency="0.02 0.001" 
+                    numOctaves="2" 
                     result="warp"
                 />                
                 <feDisplacementMap 
@@ -24,7 +24,7 @@
                     yChannelSelector="R" 
                     :scale="scale" 
                     in="SourceGraphic" 
-                    in2="fil"
+                    in2="warp"
                 />
             </filter>
         </svg>
@@ -45,7 +45,7 @@ export default {
     },
     computed: {
         scale() {
-            return Math.pow(this.scroll.partOfMax, 2) * 300;
+            return Math.pow(this.scroll.partOfMax * 5, 3) * 300;
         }
     }
 }
