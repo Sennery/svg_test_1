@@ -9,9 +9,9 @@ Vue.directive('scroll', {
             current: 0,
             destination: 0,
             elastick: 0,
-            step: binding.value.step ?? 50,
+            step: binding.value.step ?? 25,
             max: 0,
-            speed: binding.value.speed ?? 50,
+            speed: binding.value.speed ?? 200,
             distanceToScroll: 0,
             partOfMax: 0,
             scrollThisTic: 0
