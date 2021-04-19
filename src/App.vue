@@ -65,6 +65,7 @@ export default {
 html {
     font-family: "Anodina", sans-serif;
     font-size: 1vw;
+    line-height: 1;
     background-color: #17181c !important;
     background-image: url('./assets/123.jpg');
     overflow: hidden;   
