@@ -86,7 +86,7 @@ body {
 }
 
 .wrapper {
-    transition: transform 0.75s ease-out 0.75s; 
+    transition: transform 0.75s cubic-bezier(0.5, 1, 0.89, 1) 0.75s; 
     transform-origin: 50% 50vh;
 }
 
