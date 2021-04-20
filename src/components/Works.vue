@@ -3,7 +3,6 @@
         <div class="description">
             <div class="header">
                 <span>Example</span>
-                <br>
                 <span>Work</span>
             </div>
             <div class="about">
@@ -71,6 +70,8 @@ export default {
 }
 
 .description .header {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 5vh;
 }
 

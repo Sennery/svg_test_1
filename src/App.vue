@@ -9,6 +9,7 @@
                 v-for="i in [1,2,3,4,5]"
                 :key="i"
             />
+            <About/>
             <Transition
                 :scroll="scroll"
             />
@@ -20,6 +21,7 @@
 import Loader from './components/Loader.vue'
 import Lines from './components/Lines.vue'
 import Works from './components/Works.vue'
+import About from './components/About.vue'
 import Transition from './components/Transition.vue'
 
 export default {
@@ -28,6 +30,7 @@ export default {
         Loader,
         Lines,
         Works,
+        About,
         Transition
     },
     data() {
