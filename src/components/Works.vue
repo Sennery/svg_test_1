@@ -57,7 +57,8 @@ export default {
     width: 100vw;
     height: 100vh;
     padding: 0 5vw;
-    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1),
+                opacity 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 .description {
@@ -115,8 +116,14 @@ export default {
     transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
+.container:not(.wrapped) .pictures img:hover {
+    transform: scale(1.1) translate(-2vw,-2vw);
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
 .wrapped .description {
     transform: translateX(22.5vw);
+    opacity: 0;
 }
 
 .wrapped .description .text {
