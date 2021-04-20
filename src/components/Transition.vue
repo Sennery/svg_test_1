@@ -16,7 +16,7 @@
                 <feTurbulence  
                     type="fractalNoise"
                     baseFrequency="0.02 0.001" 
-                    numOctaves="2" 
+                    numOctaves="3" 
                     result="warp"
                 />                
                 <feDisplacementMap 
@@ -45,7 +45,7 @@ export default {
     },
     computed: {
         scale() {
-            return Math.pow(this.scroll.partOfMax * 5, 3) * 400 || 0;
+            return Math.pow(this.scroll.partOfMax * 5, 3) * 300 || 0;
         }
     }
 }

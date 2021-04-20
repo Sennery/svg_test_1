@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container wrapped">
         <div class="description">
             <div class="header">
                 <span>Example</span>
@@ -33,7 +33,7 @@
                                             0.61, 1, 0.88, 1;"
                             />
                         </stop>
-                    </linearGradient >
+                    </linearGradient>
                 </defs>
 
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient1)"/>           
@@ -56,19 +56,21 @@ export default {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    z-index: -9999;
+    padding: 0 5vw;
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 .description {
     display: flex;
     flex-direction: column;
-    margin-left: 5rem;
-    width: 50vw;
+    width: 45vw;
     color: #e6e6e6;
+    z-index: 1;
+    transition: inherit;
 }
 
 .description .header {
-    margin-bottom: 5rem;
+    margin-bottom: 5vh;
 }
 
 .description .header span{    
@@ -80,23 +82,47 @@ export default {
     color: #e6e6e6e7;
     font-size: 1.5rem;
     width: 75%;
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1) 0.5s,
+                opacity 0.5s cubic-bezier(0.45, 0, 0.55, 1) 0.5s;
 }
 
 .pictures {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50vw;
+    width: 45vw;
+    transition: inherit;
 }
 
 .pictures img {
     position: absolute;
     width: 42.5vw;
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1) 0.5s;
 }
 
 .pictures .back {    
     position: absolute;
     width: 45vw;
     z-index: -1;
+}
+
+.wrapped .pictures {
+    transform: translateX(-22.5vw);
+}
+
+.wrapped .pictures img {
+    transform: scale(1.15);
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.wrapped .description {
+    transform: translateX(22.5vw);
+}
+
+.wrapped .description .text {
+    transform: translateY(2.5vh);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1),
+                opacity 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 </style>
