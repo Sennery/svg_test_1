@@ -122,6 +122,11 @@ export default {
     transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
+.container:not(.wrapped) .pictures:hover {
+    transform: translate(1vw,1vw);
+    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
 .wrapped .description {
     transform: translateX(22.5vw);
     opacity: 0;
