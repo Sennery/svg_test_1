@@ -174,6 +174,7 @@ export default {
 }
 
 .contact p {
+    margin-left: 5%;
     z-index: 1;
 }
 
@@ -183,7 +184,7 @@ export default {
 }
 
 .contact:hover .rect {
-    transform: translateY(-50%);
+    transform: translateY(-55%);
 }
 
 .info > span:nth-child(1) {

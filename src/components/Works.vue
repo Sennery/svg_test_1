@@ -118,12 +118,7 @@ export default {
 }
 
 .container:not(.wrapped) .pictures img:hover {
-    transform: scale(1.1) translate(-2vw,-2vw);
-    transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
-}
-
-.container:not(.wrapped) .pictures:hover {
-    transform: translate(1vw,1vw);
+    transform: scale(1.1);
     transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
