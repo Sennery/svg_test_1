@@ -171,6 +171,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
+    transition: transform 0.25s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 .contact p {
@@ -180,7 +181,10 @@ export default {
 
 .contact .rect {
     top: 100%;
-    transition: transform 0.25s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.contact:hover p{
+    transform: translateX(5%);
 }
 
 .contact:hover .rect {
