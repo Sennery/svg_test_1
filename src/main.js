@@ -18,7 +18,7 @@ Vue.directive('scroll', {
         };
         const progressFunction = binding.value.progressFunc ?? ((part) => 1 - Math.pow(1 - part, 2));
         const currentGetter = binding.value.getter ?? (() => {});
-        const startEvent = binding.value.event ?? null;      
+        const startEvent = binding.value.event ?? 'load';      
 
         function animate() {
             scroll.distanceToScroll = scroll.destination  + scroll.elastick - scroll.current;
@@ -37,22 +37,19 @@ Vue.directive('scroll', {
             }
 
             el.style.transform = 'translateY(' + -scroll.current + 'px)';
+            
             currentGetter(scroll);
             
             requestAnimationFrame(animate);
         }
-
-        if (startEvent) {
-            window.addEventListener(startEvent, () => {
-                scroll.max = el.scrollHeight - document.documentElement.clientHeight;
-                requestAnimationFrame(animate);
-            });
-        } else {    
-            scroll.max = el.scrollHeight - document.documentElement.clientHeight;    
+        
+        window.addEventListener(startEvent, () => {
+            scroll.max = el.scrollHeight - document.documentElement.clientHeight;
             requestAnimationFrame(animate);
-        }
+        });           
+           
 
-        document.body.addEventListener('wheel', (e) => {
+        el.addEventListener('wheel', (e) => {
             const step = Math.sign(e.deltaY) * scroll.step * 5;
             if (scroll.destination + step < 0) {
                 scroll.destination = 0;
